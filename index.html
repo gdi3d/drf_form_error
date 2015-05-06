@@ -1,0 +1,95 @@
+<!doctype html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8" />
+			<title></title>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/united/bootstrap.min.css">
+
+			<!--[if IE]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+			<![endif]-->			
+		</head>
+		<body>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-md-offset-4">
+						<h1>Sample Form</h1>
+						<div id="alert_dialog_container"></div>
+						<form id="transaction_form">			
+
+							<label id="product_amount">Amount</label>
+							<div class="form-group input-group">
+					            <span class="input-group-addon" id="currency">$</span>
+					            <input type="text" class="form-control" name="product_amount" placeholder="0.00" maxlength="13">
+					        </div>
+
+					        <div class="form-group">
+				                <label>Name</label>
+				                <input type="text" class="form-control" name="product_name">
+				                <p class="help-block">some help text</p>
+				            </div>
+
+					        <div class="form-group">
+					        	<label for="category">Category</label>
+					        	<select name="category" class="form-control">
+					        		<option>Foo</option>
+					        		<option>Bar</option>
+					        		<option>Foo Bar</option>
+				        		</select>
+				        		<p class="help-block">some help text</p>
+					       	</div>
+							
+							<label>Gender</label>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="gender" value="option1">
+							    Male
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="gender" value="option2">
+							    Female
+							  </label>
+							</div>
+							<!-- Handling automatic error placeholders with radio elements is not
+								an easy task, so we do it the chuck norris way. Just hack it! -->
+							<p id="gender_error_placeholder" class="text-danger"></p>
+							
+							<label>Shipment</label>
+							<div class="checkbox">
+							  <label>
+							    <input type="checkbox" name="product_shipment_option" value="">
+							    On store
+							  </label>
+							</div>
+							<div class="checkbox">
+							  <label>
+							    <input type="checkbox" name="product_shipment_option" value="">
+							    Send it to my house
+							  </label>
+							</div>
+							<!-- Handling automatic error placeholders with checkbox elements is not
+								an easy task, so we do it the chuck norris way. Just hack it! -->
+							<p id="product_shipment_option_error_placeholder" class="text-danger"></p>
+
+							<div class="form-group">
+				                <label>Description</label>
+				                <textarea name="product_description" class="form-control"></textarea>
+				                <p class="help-block">some help text</p>
+				            </div>						
+
+				            <div class="form-group" align="center">					
+								<button type="button" class="btn btn-primary btn-lg" id="try">Click me!</button>				    
+							</div>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		</body>
+	</html>
