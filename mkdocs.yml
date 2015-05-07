@@ -1,0 +1,7 @@
+site_name: Django Rest Framework Form Error
+theme: readthedocs
+docs_dir: 'docs'
+repo_url: https://github.com/gdi3d/drf_form_error
+
+pages:
+- ['index.md', 'Home']

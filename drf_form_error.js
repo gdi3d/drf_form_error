@@ -3,6 +3,8 @@
  */
 var drf_js = 
 {
+	error_suffix_id: '_error_placeholder', // sufix of error fields
+	error_placeholder: '<div class="text-danger"></div>',
 	/**
 	 * Just for testing
 	 */
@@ -35,7 +37,6 @@ var drf_js =
 	 */
 	_api_response_fields_tmp: new Array(),
 	api_response_fields: new Array(),
-	_is_root: false,
 	recursiveIteration: function(object)
 	{
 	    for (var property in object)
@@ -71,8 +72,6 @@ var drf_js =
 	        }
 	    }
 	},
-	error_id: '_error_placeholder', // sufix of error fields
-	error_placeholder: '<div class="text-danger"></div>',
 	/**
 	 * Show the errors from the api on the forms
 	 * @param  {object} data The response from the api
@@ -88,24 +87,24 @@ var drf_js =
 				v = drf_js.api_response_fields[k]
 
 				// check if the div that acts as container exists
-				if(!$('#'+k+drf_js.error_id).length)
+				if(!$('#'+k+drf_js.error_suffix_id).length)
 				{
 					// if field is inside an input-group we place the error div
 					// outside that container so we don't break it
 					if($(':input[name="'+k+'"]').parent().hasClass('input-group'))
 					{						
 						$(':input[name="'+k+'"]').parent().after(drf_js.error_placeholder)
-						$(':input[name="'+k+'"]').parent().next('div').attr('id', k+drf_js.error_id);
+						$(':input[name="'+k+'"]').parent().next('div').attr('id', k+drf_js.error_suffix_id);
 					}
 					else
 					{
 						$(':input[name="'+k+'"]').after(drf_js.error_placeholder);
-						$(':input[name="'+k+'"]').next('div').attr('id', k+drf_js.error_id);
+						$(':input[name="'+k+'"]').next('div').attr('id', k+drf_js.error_suffix_id);
 					}
 				}
 
 				$(':input[name="'+k+'"]').closest('div').addClass('has-error');				
-				$('#'+k+drf_js.error_id).html(v.join('<br>'))
+				$('#'+k+drf_js.error_suffix_id).html(v.join('<br>'))
 			}			
 		}
 	},
@@ -115,7 +114,7 @@ var drf_js =
 	clear_errors: function()
 	{
 		// remove classes and errors from form elements
-		$('div[id*="'+drf_js.error_id+'"').html('');
+		$('div[id*="'+drf_js.error_suffix_id+'"').html('');
 		$('.has-error').removeClass('has-error');
 		$('div[role="alert"]').remove();
 
