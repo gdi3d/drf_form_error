@@ -76,10 +76,19 @@ var drf_js =
 	 * Show the errors from the api on the forms
 	 * @param  {object} data The response from the api
 	 */
-	show_form_error: function(data)
+	show_form_error: function(data, form_id)
 	{
 		if(data)
 		{
+			if(form_id != 'undefined' || form_id != '')
+			{
+				form_id = '#' + form_id + ' '
+			}
+			else
+			{
+				form_id = ''
+			}
+
 			// convert the response into a mapped array
 			drf_js.recursiveIteration(data)
 			for(var k in drf_js.api_response_fields)
@@ -91,20 +100,20 @@ var drf_js =
 				{
 					// if field is inside an input-group we place the error div
 					// outside that container so we don't break it
-					if($(':input[name="'+k+'"]').parent().hasClass('input-group'))
+					if($(form_id + ':input[name="'+k+'"]').parent().hasClass('input-group'))
 					{						
-						$(':input[name="'+k+'"]').parent().after(drf_js.error_placeholder)
-						$(':input[name="'+k+'"]').parent().next('div').attr('id', k+drf_js.error_suffix_id);
+						$(form_id + ':input[name="'+k+'"]').parent().after(drf_js.error_placeholder)
+						$(form_id + ':input[name="'+k+'"]').parent().next('div').attr('id', k+drf_js.error_suffix_id);
 					}
 					else
 					{
-						$(':input[name="'+k+'"]').after(drf_js.error_placeholder);
-						$(':input[name="'+k+'"]').next('div').attr('id', k+drf_js.error_suffix_id);
+						$(form_id + ':input[name="'+k+'"]').after(drf_js.error_placeholder);
+						$(form_id + ':input[name="'+k+'"]').next('div').attr('id', k+drf_js.error_suffix_id);
 					}
 				}
 
-				$(':input[name="'+k+'"]').closest('div').addClass('has-error');				
-				$('#'+k+drf_js.error_suffix_id).html(v.join('<br>'))
+				$(form_id + ':input[name="'+k+'"]').closest('div').addClass('has-error');				
+				$(form_id + '#'+k+drf_js.error_suffix_id).html(v.join('<br>'))
 			}			
 		}
 	},
@@ -158,7 +167,7 @@ var drf_js =
 // bind the action the the main button
 $('#try').click(function(){ 
 		// show the errors on the form
-		drf_js.show_form_error(drf_js.throw_error());
+		drf_js.show_form_error(drf_js.throw_error(), 'transaction_form');
 		// add the message at the top
 		drf_js.add_message('success', 'All went well!', $('#alert_dialog_container'));
 		drf_js.add_message('info', 'Remember to read the docs ;)', $('#alert_dialog_container'));
