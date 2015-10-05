@@ -82,6 +82,6 @@ where `<p id="gender_error_placeholder" class="text-danger"></p>` prevents the j
 This library has an extra method **drf_js.add_message**. This method will add a message at the top of the screen and can be setted with multiple states:
 
 * drf_js.add_message('success', 'All went well!', $('#alert_dialog_container'));
-* drf_js.add_message('info', 'Remember to read the docs ;)', $('#alert_dialog_container'));
+* drf_js.add_message('info', 'Remember to read the docs ;)', $('#alert_dialog_container'), $('#some_div'));
 * drf_js.add_message('warning', 'Don\'t forget the bring a towel', $('#alert_dialog_container'));
-* drf_js.add_message('danger', 'Check out the errors on the form', $('#alert_dialog_container'));
+* drf_js.add_message('danger', 'Check out the errors on the form', $('#alert_dialog_container'), 'top');

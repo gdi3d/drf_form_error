@@ -136,8 +136,9 @@ var drf_js =
 	 * @param {string} type Type of error to show
 	 * @param {string} msg  Message
 	 * @param {object} container_selector  A jQuery selector. e.g: $('#some_div')
+	 * @param {mixed}	scroll_top	Scroll to a specific element using selector object or the string 'top' e.g: $('#some_div') or 'top'
 	 */
-	add_message: function(type, msg, container_selector)
+	add_message: function(type, msg, container_selector, scroll_to)
 	{
 		switch(type)
 		{
@@ -160,7 +161,14 @@ var drf_js =
 		container_selector.prepend(html);
 
 		// scroll to top
-		$('html, body').animate({ scrollTop: 0 }, 'fast');
+		if(typeof(scroll_to) == 'object')
+		{
+			$('html, body').animate({ scrollTop: scroll_to.offset().top }, 'fast');			
+		}
+		else if(scroll_to == 'top')
+		{
+			$('html, body').animate({ scrollTop: 0 }, 'fast');			
+		}
 	}
 }
 
@@ -172,5 +180,5 @@ $('#try').click(function(){
 		drf_js.add_message('success', 'All went well!', $('#alert_dialog_container'));
 		drf_js.add_message('info', 'Remember to read the docs ;)', $('#alert_dialog_container'));
 		drf_js.add_message('warning', 'Don\'t forget the bring a towel', $('#alert_dialog_container'));
-		drf_js.add_message('danger', 'Check out the errors on the form', $('#alert_dialog_container'));
+		drf_js.add_message('danger', 'Check out the errors on the form', $('#alert_dialog_container'), 'top');
 	});
